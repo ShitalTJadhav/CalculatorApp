@@ -31,20 +31,34 @@ class CalculatorViewModelTest: XCTestCase {
         XCTAssert(result == expected, "\(operation) of 2 number is wrong")
     }
     
-    func testAddition()  {
+    func testAdditionOperation()  {
         testAllOperations(number1: 10, number2: 30, expected: 40, operation: .addtion)
     }
     
-    func testSubtraction()  {
+    func testSubtractionOperation()  {
         testAllOperations(number1: 45, number2: 15, expected: 30, operation: .subtraction)
     }
     
-    func testMultiplication()  {
+    func testMultiplicationOperation()  {
         testAllOperations(number1: 5, number2: 3, expected: 15, operation: .multiplication)
     }
     
-    func testDivision()  {
+    func testDivisionOperation()  {
         testAllOperations(number1: 30, number2: 5, expected: 6, operation: .division)
     }
 
+    func testEqualOperation()  {
+        testAllOperations(number1: 11, number2: 35, expected: 35, operation: .equal)
+    }
+    
+    func testUserSelectOperations() {
+        
+        let operations = OperationType.allCases
+        // print("operations : ",operations)
+        
+        for i in 12...15 {
+            let result = viewModel.setOperation(tag: i)
+            XCTAssertEqual(result, operations[i-12])
+        }
+    }
 }
