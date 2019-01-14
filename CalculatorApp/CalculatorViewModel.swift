@@ -35,11 +35,36 @@ struct CalculatorViewModel {
             result = number1 / number2
         case .multiplication:
             result = number1 * number2
-        case .modulo: break  //Not yet implement
         default:
             result = number2
         }
         
         return result
+    }
+    
+//    func calculateModulo( number: Double) -> Double {
+//    }
+//
+//    func reverseNumber( number: Double) -> Double {
+//        let result = number
+//        return -(result)
+//    }
+    
+    func setOperation(tag : Int) -> OperationType  {
+        
+        switch tag {
+        case 12:
+            return OperationType.addtion
+        case 13:
+            return OperationType.subtraction
+        case 14:
+            return OperationType.multiplication
+        case 15:
+            return OperationType.division
+        case 16:
+            return OperationType.modulo
+        default:
+            return OperationType.equal
+        }
     }
 }
