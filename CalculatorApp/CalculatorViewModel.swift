@@ -81,7 +81,7 @@ struct CalculatorViewModel {
             return OperationType.subtraction
         case "x":
             return OperationType.multiplication
-        case "/":
+        case "÷":
             return OperationType.division
         case "%":
             return OperationType.modulo
