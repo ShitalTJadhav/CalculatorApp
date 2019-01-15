@@ -45,31 +45,11 @@ class CalculatorViewController: UIViewController {
         //Calculate result
         doOperation()
         operation = viewModel.selectOperation(buttonValue: (sender.titleLabel?.text)!)
-
-        //"%" button click
-         if operation == .modulo {
-            
-            let currentValue = Double(resultLabel.text!)!
-            currentNumberInLabel = viewModel.calculateResult(previousNumber: storedValue, currentNumber: currentValue, operation: operation!)
-            resultLabel.text = currentNumberInLabel
-            operation = .equal
-        }
-        //"+/-" button click
-        else if operation == .reverse {
-            
-            let currentValue = Double(resultLabel.text!)!
-            currentNumberInLabel = viewModel.calculateResult(previousNumber: storedValue, currentNumber: currentValue, operation: operation!)
-            resultLabel.text! = currentNumberInLabel
-            operation = .equal
-        }
-            //
-        else {
-            
-            //Store current number as stored value
-            storedValue = Double(currentNumberInLabel)!
-            operation = viewModel.selectOperation(buttonValue: (sender.titleLabel?.text)!)
-            currentNumberInLabel = "0"
-        }
+        
+        //Store current number as stored value
+        storedValue = Double(currentNumberInLabel)!
+        operation = viewModel.selectOperation(buttonValue: (sender.titleLabel?.text)!)
+        currentNumberInLabel = "0"
     }
 
     @IBAction func equalButtonClick(_ sender : UIButton) {
@@ -103,11 +83,6 @@ class CalculatorViewController: UIViewController {
 //        currentNumberInLabel = "0"
         storedValue = 0
         currentNumberInLabel = resultLabel.text!
-    }
-    
-    func setValueOnLabel(value : String) {
-       
-      
     }
     
     // MARK: - Reset Value methods

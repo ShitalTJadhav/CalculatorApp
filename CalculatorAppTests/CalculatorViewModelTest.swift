@@ -51,14 +51,6 @@ class CalculatorViewModelTest: XCTestCase {
     func testPassWith_EqualOperation()  {
         getActualResult(prevoiusValue: 11, currentValue: 35, expected: 35, operation: .equal)
     }
-
-    func testPassWith_ModuloOperation()  {
-        getActualResult(prevoiusValue: 0, currentValue: 25, expected: 0.25, operation: .modulo)
-    }
-    
-    func testPassWith_ReverseOperation()  {
-        getActualResult(prevoiusValue: 11, currentValue: 35, expected: -35, operation: .reverse)
-    }
     
     func testPassWithSelectOperation_withButtonTitle()  {
         
@@ -72,13 +64,8 @@ class CalculatorViewModelTest: XCTestCase {
         XCTAssert(viewModel.selectOperation(buttonValue: "x") == OperationType.multiplication)
         
         //Test Addition Opertor is selected
-        XCTAssert(viewModel.selectOperation(buttonValue: "/") == OperationType.division)
+        XCTAssert(viewModel.selectOperation(buttonValue: "÷") == OperationType.division)
         
-        //Test Modulo Opertor is selected
-        XCTAssert(viewModel.selectOperation(buttonValue: "%") == OperationType.modulo)
-        
-        //Test Reverse Opertor is selected
-        XCTAssert(viewModel.selectOperation(buttonValue: "+/-") == OperationType.reverse)
     }
     
 //    func testUserSelectOperations() {

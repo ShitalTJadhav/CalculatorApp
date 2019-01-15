@@ -35,8 +35,6 @@ class CalculatorViewUITesting: XCTestCase {
 //        XCTAssertTrue(app.buttons["multiplication"].exists)
 //        XCTAssertTrue(app.buttons["division"].exists)
 //        XCTAssertTrue(app.buttons["equal"].exists)
-//        XCTAssertTrue(app.buttons["modulo"].exists)
-//        XCTAssertTrue(app.buttons["reverse"].exists)
 //        XCTAssertTrue(app.buttons["0"].exists)
 //        XCTAssertTrue(app.buttons["1"].exists)
 //        XCTAssertTrue(app.buttons["2"].exists)
@@ -131,15 +129,6 @@ class CalculatorViewUITesting: XCTestCase {
         
         app/*@START_MENU_TOKEN@*/.buttons["ClearButton"]/*[[".buttons[\"C\"]",".buttons[\"ClearButton\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
     }
-    
-    func testReverseOperation() {
-        
-        app.buttons["6"].tap()
-        app.buttons["5"].tap()
-        app.buttons["reverse"].tap()
-        XCTAssertTrue(app.staticTexts["Calculation-ResultLabel"].label == "-65")
-        
-        app/*@START_MENU_TOKEN@*/.buttons["ClearButton"]/*[[".buttons[\"C\"]",".buttons[\"ClearButton\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
-    }
+
     
 }
