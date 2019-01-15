@@ -24,41 +24,72 @@ class CalculatorViewModelTest: XCTestCase {
         viewModel = nil
     }
 
-    func testAllOperations(number1: Double, number2: Double, expected: Double, operation: OperationType)  {
+    func getActualResult(prevoiusValue: Double, currentValue: Double, expected: Double, operation: OperationType)  {
         
-        let result = viewModel.calculateResult(number1: number1, number2: number2, operation: operation)
+        //Call viewmodel method to get actual result
+        let result = viewModel.calculateResult(previousNumber: prevoiusValue, currentNumber: currentValue, operation: operation)
         
         XCTAssert(result == expected, "\(operation) of 2 number is wrong")
     }
     
-    func testAdditionOperation()  {
-        testAllOperations(number1: 10, number2: 30, expected: 40, operation: .addtion)
+    func testPassWith_AdditionOperation()  {
+        getActualResult(prevoiusValue: 10, currentValue: 30, expected: 40, operation: .addtion)
     }
     
-    func testSubtractionOperation()  {
-        testAllOperations(number1: 45, number2: 15, expected: 30, operation: .subtraction)
+    func testPassWith_SubtractionOperation()  {
+        getActualResult(prevoiusValue: 45, currentValue: 15, expected: 30, operation: .subtraction)
     }
     
-    func testMultiplicationOperation()  {
-        testAllOperations(number1: 5, number2: 3, expected: 15, operation: .multiplication)
+    func testPassWith_MultiplicationOperation()  {
+        getActualResult(prevoiusValue: 5, currentValue: 3, expected: 15, operation: .multiplication)
     }
     
-    func testDivisionOperation()  {
-        testAllOperations(number1: 30, number2: 5, expected: 6, operation: .division)
+    func testPassWith_DivisionOperation()  {
+        getActualResult(prevoiusValue: 30, currentValue: 5, expected: 6, operation: .division)
     }
 
-    func testEqualOperation()  {
-        testAllOperations(number1: 11, number2: 35, expected: 35, operation: .equal)
+    func testPassWith_EqualOperation()  {
+        getActualResult(prevoiusValue: 11, currentValue: 35, expected: 35, operation: .equal)
+    }
+
+    func testPassWith_ModuloOperation()  {
+        getActualResult(prevoiusValue: 0, currentValue: 25, expected: 0.25, operation: .modulo)
     }
     
-    func testUserSelectOperations() {
-        
-        let operations = OperationType.allCases
-        // print("operations : ",operations)
-        
-        for i in 12...15 {
-            let result = viewModel.setOperation(tag: i)
-            XCTAssertEqual(result, operations[i-12])
-        }
+    func testPassWith_ReverseOperation()  {
+        getActualResult(prevoiusValue: 11, currentValue: 35, expected: -35, operation: .reverse)
     }
+    
+    func testPassWithSelectOperation_withButtonTitle()  {
+        
+        //Test Addition Opertor is selected
+        XCTAssert(viewModel.selectOperation(buttonValue: "+") == OperationType.addtion)
+        
+        //Test Addition Opertor is selected
+        XCTAssert(viewModel.selectOperation(buttonValue: "-") == OperationType.subtraction)
+        
+        //Test Addition Opertor is selected
+        XCTAssert(viewModel.selectOperation(buttonValue: "x") == OperationType.multiplication)
+        
+        //Test Addition Opertor is selected
+        XCTAssert(viewModel.selectOperation(buttonValue: "/") == OperationType.division)
+        
+        //Test Modulo Opertor is selected
+        XCTAssert(viewModel.selectOperation(buttonValue: "%") == OperationType.modulo)
+        
+        //Test Reverse Opertor is selected
+        XCTAssert(viewModel.selectOperation(buttonValue: "+/-") == OperationType.reverse)
+    }
+    
+//    func testUserSelectOperations() {
+//
+//        let operations = OperationType.allCases
+//        // print("operations : ",operations)
+//
+//        for i in 12...15 {
+//            let result = viewModel.setOperation(tag: i)
+//            XCTAssertEqual(result, operations[i-12])
+//        }
+//    }
+    
 }
