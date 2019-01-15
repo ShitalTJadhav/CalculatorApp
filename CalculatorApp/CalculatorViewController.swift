@@ -44,7 +44,6 @@ class CalculatorViewController: UIViewController {
         
         //Calculate result
         doOperation()
-        operation = viewModel.selectOperation(buttonValue: (sender.titleLabel?.text)!)
         
         //Store current number as stored value
         storedValue = Double(currentNumberInLabel)!
