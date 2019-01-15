@@ -50,7 +50,7 @@ class CalculatorViewController: UIViewController {
          if operation == .modulo {
             
             let currentValue = Double(resultLabel.text!)!
-            currentNumberInLabel = String(viewModel.calculateResult(previousNumber: storedValue, currentNumber: currentValue, operation: operation!))
+            currentNumberInLabel = viewModel.calculateResult(previousNumber: storedValue, currentNumber: currentValue, operation: operation!)
             resultLabel.text = currentNumberInLabel
             operation = .equal
         }
@@ -58,7 +58,7 @@ class CalculatorViewController: UIViewController {
         else if operation == .reverse {
             
             let currentValue = Double(resultLabel.text!)!
-            currentNumberInLabel = String(viewModel.calculateResult(previousNumber: storedValue, currentNumber: currentValue, operation: operation!))
+            currentNumberInLabel = viewModel.calculateResult(previousNumber: storedValue, currentNumber: currentValue, operation: operation!)
             resultLabel.text! = currentNumberInLabel
             operation = .equal
         }
@@ -95,7 +95,10 @@ class CalculatorViewController: UIViewController {
         let total = viewModel.calculateResult(previousNumber: storedValue, currentNumber: currentValue, operation: operation!)
         
         //Show calculate number on view
-        setValueOnLabel(value: String(total))
+       // setValueOnLabel(value: total)
+        resultLabel.text = total
+        //Show blink animation to label
+        resultLabel.blink()
         
 //        currentNumberInLabel = "0"
         storedValue = 0
@@ -104,9 +107,7 @@ class CalculatorViewController: UIViewController {
     
     func setValueOnLabel(value : String) {
        
-        resultLabel.text = value
-        //Show blink animation to label
-        resultLabel.blink()
+      
     }
     
     // MARK: - Reset Value methods

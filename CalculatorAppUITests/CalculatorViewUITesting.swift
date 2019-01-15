@@ -91,7 +91,7 @@ class CalculatorViewUITesting: XCTestCase {
         app.buttons["6"].tap()
         
         app/*@START_MENU_TOKEN@*/.buttons["equal"]/*[[".buttons[\"=\"]",".buttons[\"equal\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
-        XCTAssertEqual(app.staticTexts["Calculation-ResultLabel"].label, "25.0")
+        XCTAssertEqual(app.staticTexts["Calculation-ResultLabel"].label, "25")
 
         app.buttons["ClearButton"].tap()
     }
@@ -104,7 +104,7 @@ class CalculatorViewUITesting: XCTestCase {
         app.buttons["2"].tap()
         app.buttons["6"].tap()
         app.buttons["equal"].tap()
-        XCTAssertEqual(app.staticTexts["Calculation-ResultLabel"].label, "39.0")
+        XCTAssertEqual(app.staticTexts["Calculation-ResultLabel"].label, "39")
         
         app/*@START_MENU_TOKEN@*/.buttons["ClearButton"]/*[[".buttons[\"C\"]",".buttons[\"ClearButton\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
     }
@@ -115,7 +115,7 @@ class CalculatorViewUITesting: XCTestCase {
         app.buttons["multiplication"].tap()
         app.buttons["6"].tap()
         app.buttons["equal"].tap()
-        XCTAssertEqual(app.staticTexts["Calculation-ResultLabel"].label, "24.0")
+        XCTAssertEqual(app.staticTexts["Calculation-ResultLabel"].label, "24")
         
         app/*@START_MENU_TOKEN@*/.buttons["ClearButton"]/*[[".buttons[\"C\"]",".buttons[\"ClearButton\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
     }
@@ -127,7 +127,7 @@ class CalculatorViewUITesting: XCTestCase {
         app.buttons["division"].tap()
         app.buttons["6"].tap()
         app.buttons["equal"].tap()
-        XCTAssertTrue(app.staticTexts["Calculation-ResultLabel"].label == "5.0")
+        XCTAssertTrue(app.staticTexts["Calculation-ResultLabel"].label == "5")
         
         app/*@START_MENU_TOKEN@*/.buttons["ClearButton"]/*[[".buttons[\"C\"]",".buttons[\"ClearButton\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
     }
@@ -137,7 +137,7 @@ class CalculatorViewUITesting: XCTestCase {
         app.buttons["6"].tap()
         app.buttons["5"].tap()
         app.buttons["reverse"].tap()
-        XCTAssertTrue(app.staticTexts["Calculation-ResultLabel"].label == "-65.0")
+        XCTAssertTrue(app.staticTexts["Calculation-ResultLabel"].label == "-65")
         
         app/*@START_MENU_TOKEN@*/.buttons["ClearButton"]/*[[".buttons[\"C\"]",".buttons[\"ClearButton\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
     }

@@ -23,7 +23,32 @@ struct CalculatorViewModel {
     
     // MARK: - Calculation methods
 
-    func calculateResult(previousNumber: Double, currentNumber: Double, operation: OperationType) -> Double {
+//    func calculateResult(previousNumber: Double, currentNumber: Double, operation: OperationType) -> Double {
+//
+//        var result : Double = 0
+//
+//        switch operation {
+//        case .addtion:
+//            result = previousNumber + currentNumber
+//        case .subtraction:
+//            result = previousNumber - currentNumber
+//        case .division:
+//            result = previousNumber / currentNumber
+//        case .multiplication:
+//            result = previousNumber * currentNumber
+//        case .modulo:
+//            result = currentNumber / 100
+//        case .reverse:
+//            result = -currentNumber
+//        default:
+//            result = currentNumber
+//        }
+//
+//        return result.truncatingRemainder(dividingBy: 1) == 0 ? String(format: "%.0f", result) : result
+//
+//    }
+
+    func calculateResult(previousNumber: Double, currentNumber: Double, operation: OperationType) -> String {
         
         var result : Double = 0
         
@@ -44,7 +69,7 @@ struct CalculatorViewModel {
             result = currentNumber
         }
         
-        return result
+        return result.truncatingRemainder(dividingBy: 1) == 0 ? String(format: "%.0f", result) : String(result)
     }
     
     func selectOperation(buttonValue : String) -> OperationType  {

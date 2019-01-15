@@ -27,7 +27,7 @@ class CalculatorViewModelTest: XCTestCase {
     func getActualResult(prevoiusValue: Double, currentValue: Double, expected: Double, operation: OperationType)  {
         
         //Call viewmodel method to get actual result
-        let result = viewModel.calculateResult(previousNumber: prevoiusValue, currentNumber: currentValue, operation: operation)
+        let result = Double(viewModel.calculateResult(previousNumber: prevoiusValue, currentNumber: currentValue, operation: operation))
         
         XCTAssert(result == expected, "\(operation) of 2 number is wrong")
     }
