@@ -14,62 +14,70 @@ class CalculatorViewController: UIViewController {
     
     var viewModel : CalculatorViewModel!
     var operation : OperationType?
-    var number1 : Double = 0
-    var number2 : Double = 0
+    var currentNumberInLabel = "0"
+    var storedValue : Double = 0
+    var isOperationSelect = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         viewModel = CalculatorViewModel()
-        resultLabel.text = "0"
         operation = .equal
     }
     
     // MARK: - Button Action methods
     
     @IBAction func numbersButtonClick(_ sender : UIButton) {
-        
-        if resultLabel.text == "0" || Double(resultLabel.text!) == number1  {
-            resultLabel.text = ""
+        if isOperationSelect {
+            currentNumberInLabel = resultLabel.text! + (sender.titleLabel?.text)!
+        } else {
+            isOperationSelect = true
+            currentNumberInLabel = (sender.titleLabel?.text)!
         }
         
-        resultLabel.text = resultLabel.text! + (sender.titleLabel?.text)!
+        resultLabel.text! = currentNumberInLabel
     }
     
     @IBAction func operationButtonClick(_ sender : UIButton) {
         
-        //Store number 1 in string
-        number1 = Double(resultLabel.text!)!
-        operation = viewModel.setOperation(tag: sender.tag)
+        isOperationSelect = false
         
-        print("Operation : ",operation!)
+        //Calculate result
+        doOperation()
+        operation = viewModel.selectOperation(buttonValue: (sender.titleLabel?.text)!)
+
+        //"%" button click
+         if operation == .modulo {
+            
+            let currentValue = Double(resultLabel.text!)!
+            currentNumberInLabel = String(viewModel.calculateResult(previousNumber: storedValue, currentNumber: currentValue, operation: operation!))
+            resultLabel.text = currentNumberInLabel
+            operation = .equal
+        }
+        //"+/-" button click
+        else if operation == .reverse {
+            
+            let currentValue = Double(resultLabel.text!)!
+            currentNumberInLabel = String(viewModel.calculateResult(previousNumber: storedValue, currentNumber: currentValue, operation: operation!))
+            resultLabel.text! = currentNumberInLabel
+            operation = .equal
+        }
+            //
+        else {
+            
+            //Store current number as stored value
+            storedValue = Double(currentNumberInLabel)!
+            operation = viewModel.selectOperation(buttonValue: (sender.titleLabel?.text)!)
+            currentNumberInLabel = "0"
+        }
     }
-    
-    @IBAction func reverseValueButtonClick(_ sender : UIButton) {
-        //Not implemented
-    }
-    
-    @IBAction func moduloButtonClick(_ sender : UIButton) {
-        //Not implemented
-    }
-    
+
     @IBAction func equalButtonClick(_ sender : UIButton) {
+        //Do the operation of selected number
+        doOperation()
         
-        //Get number2 as current number
-        number2 = Double(resultLabel.text!)!
-        
-        //Calculate total based on selected operation, prevoius number and current number enter
-        let total = viewModel.calculateResult(number1: number1, number2: number2, operation: operation!)
-        print("Result : ",total)
-        
-        //Show calculate number on view
-        resultLabel.text = String(total)
-        
-        //Clear all prevoius actions and stored number variable
-        self.resetOperation()
-        
-        //Store result as prevoius number in number1 variable
-        number1 = total
+        //Clear all prevoius actions and stored number
+        resetOperation()
     }
     
     @IBAction func clearTextButtonClick(_ sender : UIButton) {
@@ -77,11 +85,36 @@ class CalculatorViewController: UIViewController {
         self.resetOperation()
     }
     
+    // MARK: - Calculate result methods
+
+    func doOperation()
+    {
+        let currentValue = Double(currentNumberInLabel)!
+
+        //Calculate total based on selected operation, prevoius number and current number enter
+        let total = viewModel.calculateResult(previousNumber: storedValue, currentNumber: currentValue, operation: operation!)
+        
+        //Show calculate number on view
+        setValueOnLabel(value: String(total))
+        
+//        currentNumberInLabel = "0"
+        storedValue = 0
+        currentNumberInLabel = resultLabel.text!
+    }
+    
+    func setValueOnLabel(value : String) {
+       
+        resultLabel.text = value
+        //Show blink animation to label
+        resultLabel.blink()
+    }
+    
     // MARK: - Reset Value methods
 
     func resetOperation() {
-        number1 = 0
-        number2 = 0
+        storedValue = 0
+        currentNumberInLabel = resultLabel.text!
+        isOperationSelect = false
         operation = .equal
     }
 }

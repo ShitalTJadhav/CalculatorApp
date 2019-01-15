@@ -8,12 +8,13 @@
 
 import Foundation
 
-enum OperationType : CaseIterable {
+enum OperationType {
     case addtion
     case subtraction
     case multiplication
     case division
     case modulo
+    case reverse
     case equal
 }
 
@@ -22,47 +23,45 @@ struct CalculatorViewModel {
     
     // MARK: - Calculation methods
 
-    func calculateResult(number1: Double, number2: Double, operation: OperationType) -> Double {
+    func calculateResult(previousNumber: Double, currentNumber: Double, operation: OperationType) -> Double {
         
         var result : Double = 0
         
         switch operation {
         case .addtion:
-            result = number1 + number2
+            result = previousNumber + currentNumber
         case .subtraction:
-            result = number1 - number2
+            result = previousNumber - currentNumber
         case .division:
-            result = number1 / number2
+            result = previousNumber / currentNumber
         case .multiplication:
-            result = number1 * number2
+            result = previousNumber * currentNumber
+        case .modulo:
+            result = currentNumber / 100
+        case .reverse:
+            result = -currentNumber
         default:
-            result = number2
+            result = currentNumber
         }
         
         return result
     }
     
-//    func calculateModulo( number: Double) -> Double {
-//    }
-//
-//    func reverseNumber( number: Double) -> Double {
-//        let result = number
-//        return -(result)
-//    }
-    
-    func setOperation(tag : Int) -> OperationType  {
+    func selectOperation(buttonValue : String) -> OperationType  {
         
-        switch tag {
-        case 12:
+        switch buttonValue {
+        case "+":
             return OperationType.addtion
-        case 13:
+        case "-":
             return OperationType.subtraction
-        case 14:
+        case "x":
             return OperationType.multiplication
-        case 15:
+        case "/":
             return OperationType.division
-        case 16:
+        case "%":
             return OperationType.modulo
+        case "+/-":
+            return OperationType.reverse
         default:
             return OperationType.equal
         }
