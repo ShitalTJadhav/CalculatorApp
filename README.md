@@ -6,7 +6,7 @@ Created Calculator iOS application in swift with basic operations.
 Swift 4.1, Xcode 10.1
 
 #### Overview : 
-In this project I have create simple calculator functions using MVVM architecture.
+In this project I have create simple calculator functions using modern approch of MVC architecture.
 Write Unit test cases and UI testing.
 
 #### Classes uses: 
